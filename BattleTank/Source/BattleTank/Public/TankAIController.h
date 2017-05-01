@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "Tank.h"
 #include "AIController.h"
 #include "TankAIController.generated.h"
 
@@ -13,7 +14,11 @@ class BATTLETANK_API ATankAIController : public AAIController
 {
 	GENERATED_BODY()
 	
-	
+protected:
+	void BeginPlay() override;
+
+public:
+	ATank* GetControlledTank() const;
 	
 	
 };
