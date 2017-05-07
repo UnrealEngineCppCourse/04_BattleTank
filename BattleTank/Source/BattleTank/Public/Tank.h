@@ -22,6 +22,11 @@ protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
 
 private:
+	UStaticMeshComponent* Barrel = nullptr;
+
+	UPROPERTY(EditAnywhere, Category = Firing)
+	float LaunchSpeed = 100000.0f;
+
 	// Sets default values for this pawn's properties
 	ATank();
 	// Called when the game starts or when spawned
@@ -32,6 +37,6 @@ private:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UStaticMeshComponent* Barrel = nullptr;
+	
 
 };
