@@ -8,10 +8,10 @@
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-	ATank* ControlledTank = nullptr;
-	ControlledTank = GetControlledTank();
+	
+	ControlledTank = Cast<ATank>(GetPawn());;
 
-	if (ControlledTank == nullptr)
+	if (!ControlledTank)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("PlayerController not possessing tank."));
 	}
@@ -25,17 +25,17 @@ void ATankPlayerController::Tick(float DeltaTime)
 
 ATank* ATankPlayerController::GetControlledTank() const
 {
-	return Cast<ATank>(GetPawn());
+	return ControlledTank;
 }
 
 void ATankPlayerController::AimTowardsCrosshair()
 {
-	if (GetControlledTank() == nullptr) { return; }
+	if (!ControlledTank) { return; }
 	
 	FVector HitLocation;
 	if (GetSightRayHitLocation(HitLocation))
 	{
-		GetControlledTank()->AimAt(HitLocation);
+		ControlledTank->AimAt(HitLocation);
 	}
 	
 }
